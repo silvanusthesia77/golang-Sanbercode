@@ -5,37 +5,36 @@ import (
 )
 
 func main() {
-	learnVariable()
-	learnDataTypes()
-}
-func learnVariable() {
-	// short declaratuion Variable
-	name := "Silvanus Thesia"
-	age := 28
-	hobby := "football"
-	fmt.Println("Name :", name)
-	fmt.Println("Age :", age)
-	fmt.Println("Hobby :", hobby)
-	// Contoh Constant
-	const appName = "Belajar Gratis"
-	fmt.Println(appName)
-}
-func learnDataTypes() {
-	var number int8 = 22
-	angka := -2381918
-	// Dibawah ini jadinya float64
-	floatNilai := 1.0
-	nilai := 0.123
-	// dibawah ini adalah boolean
-	isTrue := true
-	isfalse := false
-	// dibawah ini adalah string
-	name := "Silvanus Thesia"
+	// Variable dan Constant
+	text := "hello world"
+	text = "Apa kabar dunia"
+	fmt.Println(text)
+
+	// Constant
+	const appGuard = "Applikasi Garuda"
+	fmt.Println(appGuard)
+
+	// Tipe Data
+	var number int8 = 123
+	negativeNumber := -123
+	decimal := 2.312
 	fmt.Println(number)
-	fmt.Println(angka)
-	fmt.Println(nilai)
-	fmt.Printf("Ini Float %v \n", floatNilai)
-	fmt.Println(isTrue == isfalse)
-	fmt.Println(isTrue != isfalse)
-	fmt.Println(name)
+	fmt.Println(negativeNumber)
+	fmt.Println(decimal)
+	isRaining := true
+	fmt.Println(isRaining)
+	decnum := 2.44
+	fmt.Printf("Bilangan : %.3f\n", decnum)
+	fmt.Printf("Bilangan : %f\n", decnum)
+	message := "Halo Bhy"
+	fmt.Printf("Message : %v", message)
+	name := "wanus thesia"
+	age := 22
+	hobby := "Sport"
+	fmt.Printf("Nama saya %s , usi %d hobby saya %v\n", name, age, hobby)
+
+	// Konversi Data Menggunakan Teknik Casting
+
+	var a float64 = 44
+	fmt.Println(a)
 }
