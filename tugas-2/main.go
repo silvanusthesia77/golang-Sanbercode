@@ -62,6 +62,8 @@ func main() {
 	totalJumlah := intPertama + iniKedua + iniKetiga + iniKeempat
 	fmt.Println(totalJumlah)
 
+	// Soal 5
+
 	// ubahlah variabel diatas menjadi integer dan jumlahkan semuanya
 	// 1. Deklarasi variabel awal (string)
 	var panjangPersegiPanjang string = "8"
