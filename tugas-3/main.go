@@ -1,121 +1,128 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
-	"math"
-	"net/http"
+	"strings"
 )
 
-// Struct untuk Soal 2
-type Device struct {
-	Vendor string `json:"vendor"`
-	Model  string `json:"model"`
-}
-
-// Struct untuk Soal 3
-type Book struct {
-	Title       string
-	Desc        string
-	Author      string
-	ReleaseYear int
-}
-
-// Function untuk Soal 4
-func hitungTabung(jariJari float64, tinggi float64) (volume float64, luasAlas float64, kelilingAlas float64) {
-	pi := math.Pi
-
-	luasAlas = pi * math.Pow(jariJari, 2)
-	kelilingAlas = 2 * pi * jariJari
-	volume = luasAlas * tinggi
-
-	return volume, luasAlas, kelilingAlas
-}
-
 func main() {
-	// Data JSON untuk Soal 1 dan 2
-	var jsonString = `[
-		{"vendor":"Acer","model":"beTouch E110"},
-		{"vendor":"Samsung","model":"Galaxy S III"},
-		{"vendor":"Samsung","model":"Galaxy Note II"},
-		{"vendor":"Sony","model":"Xperia Z"},
-		{"vendor":"Sony","model":"Ericsson J100"}
-	]`
+	// ==========================================
+	// SOAL 1: Manipulasi String
+	// ==========================================
+	fmt.Println("--- SOAL 1 ---")
+	kalimat := "halo halo bandung"
+	angka := 2021
 
-	fmt.Println("========================================")
+	// Mengganti kata "halo" menjadi "Hi"
+	kalimatGanti := strings.ReplaceAll(kalimat, "halo", "Hi")
 
-	// soal 1
-	var dataMap []map[string]string
-	err := json.Unmarshal([]byte(jsonString), &dataMap)
-	if err != nil {
-		log.Fatalf("Error decode JSON (Soal 1): %v", err)
-	}
+	// Menampilkan output sesuai format yang diminta
+	fmt.Printf("\"%s\" - %d\n\n", kalimatGanti, angka)
 
-	fmt.Println("--- Hasil Soal 1 (Vendor Samsung) ---")
-	for _, data := range dataMap {
-		if data["vendor"] == "Samsung" {
-			fmt.Printf("Vendor: %s, Model: %s\n", data["vendor"], data["model"])
+	// ==========================================
+	// SOAL 2: Kondisional (Indeks Nilai)
+	// ==========================================
+	fmt.Println("--- SOAL 2 ---")
+	var nilaiJohn = 80
+	var nilaiDoe = 50
+
+	// Fungsi anonim untuk mengecek dan mencetak indeks agar kode lebih rapi
+	cekIndeks := func(nama string, nilai int) {
+		var indeks string
+		if nilai >= 80 {
+			indeks = "A"
+		} else if nilai >= 70 && nilai < 80 {
+			indeks = "B"
+		} else if nilai >= 60 && nilai < 70 {
+			indeks = "C"
+		} else if nilai >= 50 && nilai < 60 {
+			indeks = "D"
+		} else {
+			indeks = "E"
 		}
+		fmt.Printf("Nilai %s (%d) mendapatkan indeks: %s\n", nama, nilai, indeks)
 	}
 
-	fmt.Println("\n========================================")
+	cekIndeks("John", nilaiJohn)
+	cekIndeks("Doe", nilaiDoe)
+	fmt.Println()
 
-	// soal 2
-	var dataStruct []Device
-	err = json.Unmarshal([]byte(jsonString), &dataStruct)
-	if err != nil {
-		log.Fatalf("Error decode JSON (Soal 2): %v", err)
+	// ==========================================
+	// SOAL 3: Switch Case (Format Tanggal)
+	// ==========================================
+	fmt.Println("--- SOAL 3 ---")
+	var tanggal = 17
+	var bulan = 8
+	var tahun = 1945
+
+	var namaBulan string
+	switch bulan {
+	case 1:
+		namaBulan = "Januari"
+	case 2:
+		namaBulan = "Februari"
+	case 3:
+		namaBulan = "Maret"
+	case 4:
+		namaBulan = "April"
+	case 5:
+		namaBulan = "Mei"
+	case 6:
+		namaBulan = "Juni"
+	case 7:
+		namaBulan = "Juli"
+	case 8:
+		namaBulan = "Agustus"
+	case 9:
+		namaBulan = "September"
+	case 10:
+		namaBulan = "Oktober"
+	case 11:
+		namaBulan = "November"
+	case 12:
+		namaBulan = "Desember"
+	default:
+		namaBulan = "Bulan tidak valid"
 	}
 
-	fmt.Println("--- Hasil Soal 2 (Vendor Sony) ---")
-	for _, data := range dataStruct {
-		if data["vendor"] == "Sony" {
-			fmt.Printf("Vendor: %s, Model: %s\n", data["vendor"], data["model"])
+	fmt.Printf("%d %s %d\n\n", tanggal, namaBulan, tahun)
+
+	// ==========================================
+	// SOAL 4: Kondisional (Generasi)
+	// ==========================================
+	fmt.Println("--- SOAL 4 ---")
+	var tahunLahir = 1998 // Silakan ubah dengan tahun kelahiran Anda
+	var generasi string
+
+	if tahunLahir >= 1944 && tahunLahir <= 1964 {
+		generasi = "Baby boomer"
+	} else if tahunLahir >= 1965 && tahunLahir <= 1979 {
+		generasi = "Generasi X"
+	} else if tahunLahir >= 1980 && tahunLahir <= 1994 {
+		generasi = "Generasi Y (Millenials)"
+	} else if tahunLahir >= 1995 && tahunLahir <= 2015 {
+		generasi = "Generasi Z"
+	} else {
+		generasi = "Di luar rentang data yang diberikan"
+	}
+
+	fmt.Printf("Tahun kelahiran %d termasuk ke dalam: %s\n\n", tahunLahir, generasi)
+
+	// ==========================================
+	// SOAL 5: Looping dengan Syarat Tertentu
+	// ==========================================
+	fmt.Println("--- SOAL 5 ---")
+	for i := 1; i <= 20; i++ {
+		// Pengecekan harus dimulai dari kondisi yang paling spesifik terlebih dahulu
+		// yaitu kelipatan 3 DAN ganjil
+		if i%3 == 0 && i%2 != 0 {
+			fmt.Printf("%d - I Love Coding\n", i)
+		} else if i%2 == 0 {
+			// Kondisi genap
+			fmt.Printf("%d - Berkualitas\n", i)
+		} else {
+			// Kondisi ganjil (sisanya)
+			fmt.Printf("%d - Santai\n", i)
 		}
-	}
-
-	fmt.Println("\n========================================")
-
-	// soal 3
-	books := []Book{
-		{Title: "Belajar Golang", Desc: "Buku dasar pemrograman Go", Author: "Budi", ReleaseYear: 2021},
-		{Title: "Clean Code", Desc: "Panduan menulis kode yang rapi", Author: "Robert C. Martin", ReleaseYear: 2008},
-		{Title: "The Pragmatic Programmer", Desc: "Tips menjadi programmer handal", Author: "Andrew Hunt", ReleaseYear: 1999},
-		{Title: "Sistem Informasi Manajemen", Desc: "Konsep dasar SIM", Author: "Andi", ReleaseYear: 2019},
-		{Title: "Desain Database", Desc: "Cara merancang database relasional", Author: "Siti", ReleaseYear: 2022},
-	}
-
-	booksJSON, err := json.MarshalIndent(books, "", "  ")
-	if err != nil {
-		log.Fatalf("Error encode JSON (Soal 3): %v", err)
-	}
-
-	fmt.Println("--- Hasil Soal 3 (Encode ke JSON) ---")
-	fmt.Println(string(booksJSON))
-
-	fmt.Println("\n========================================")
-
-	// soal 4
-	// Setup route untuk web server
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		jariJari := 7.0
-		tinggi := 10.0
-
-		volume, luasAlas, kelilingAlas := hitungTabung(jariJari, tinggi)
-
-		result := fmt.Sprintf("jariJari : %.0f, tinggi: %.0f, volume : %.2f, luas alas: %.2f, keliling alas: %.2f",
-			jariJari, tinggi, volume, luasAlas, kelilingAlas)
-
-		fmt.Fprint(w, result)
-	})
-
-	fmt.Println("--- Hasil Soal 4 (Web Server) ---")
-	fmt.Println("Server berjalan di port 8080. Buka http://localhost:8080 di browser Anda.")
-
-	// Menjalankan web server (akan mem-block eksekusi kode di bawahnya)
-	err = http.ListenAndServe(":8080", nil)
-	if err != nil {
-		log.Fatalf("Server gagal dijalankan: %v", err)
 	}
 }
